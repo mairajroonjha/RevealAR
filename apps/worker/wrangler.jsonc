@@ -18,14 +18,14 @@
   "kv_namespaces": [
     {
       "binding": "JOB_CACHE",
-      "id": "REPLACE_WITH_KV_NAMESPACE_ID"
+      "id": "9eded639c913498a9ef43b932d60239c"
     }
   ],
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "revealar-db",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "78d8838a-b7b6-443c-af43-5dd58f42ab8f"
     }
   ],
   "queues": {
