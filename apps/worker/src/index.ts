@@ -12,6 +12,23 @@ export default {
       const url = new URL(request.url);
       const path = url.pathname.replace(/\/+$/, "") || "/";
 
+      if (request.method === "GET" && path === "/") {
+        return json({
+          ok: true,
+          service: "revealar-api",
+          message: "RevealAR API is running.",
+          endpoints: [
+            "GET /health",
+            "POST /uploads/room-image",
+            "POST /projects",
+            "GET /projects/:id",
+            "POST /ai/room-question",
+            "POST /ai/texture-jobs",
+            "GET /ai/jobs/:id"
+          ]
+        });
+      }
+
       if (request.method === "GET" && path === "/health") {
         return json({ ok: true, service: "revealar-api" });
       }
