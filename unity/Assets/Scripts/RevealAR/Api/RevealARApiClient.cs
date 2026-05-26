@@ -9,7 +9,7 @@ namespace RevealAR.Api
 {
     public class RevealARApiClient : MonoBehaviour
     {
-        [SerializeField] private string baseUrl = "http://127.0.0.1:8787";
+        [SerializeField] private string baseUrl = "https://revealar-api.mirajroonjha.workers.dev";
 
         public IEnumerator UploadRoomImage(byte[] imageBytes, string contentType, Action<UploadRoomImageResponse> onSuccess, Action<string> onError)
         {

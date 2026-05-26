@@ -96,13 +96,19 @@ RoomCameraCapture
 WallTextureApplier
 ```
 
-For local backend testing, set the API base URL in `RevealARApiClient` to:
+For mobile backend testing, set the API base URL in `RevealARApiClient` to:
+
+```txt
+https://revealar-api.mirajroonjha.workers.dev
+```
+
+For local backend testing in the Unity editor, you can temporarily use:
 
 ```txt
 http://127.0.0.1:8787
 ```
 
-For mobile-device testing, use your machine LAN IP or a tunnel URL because `127.0.0.1` points to the phone itself.
+For mobile-device testing against a local dev server, use your machine LAN IP or a tunnel URL because `127.0.0.1` points to the phone itself.
 
 ## Next Build Steps
 
