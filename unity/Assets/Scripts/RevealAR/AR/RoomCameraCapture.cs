@@ -14,6 +14,17 @@ namespace RevealAR.AR
         {
             yield return new WaitForEndOfFrame();
 
+            if (arCamera == null)
+            {
+                arCamera = Camera.main;
+            }
+
+            if (arCamera == null)
+            {
+                Debug.LogError("RoomCameraCapture needs an AR camera.");
+                yield break;
+            }
+
             var renderTexture = new RenderTexture(captureWidth, captureHeight, 24);
             var previousTarget = arCamera.targetTexture;
             var previousActive = RenderTexture.active;

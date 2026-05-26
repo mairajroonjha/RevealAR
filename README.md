@@ -94,6 +94,29 @@ RevealARApiClient
 ARFurniturePlacementController
 RoomCameraCapture
 WallTextureApplier
+RevealARDemoController
+```
+
+Create a simple Canvas with buttons and wire them to `RevealARDemoController`:
+
+```txt
+Capture Room        -> CaptureAndUploadRoom
+Save Project        -> SaveProject
+Ask AI              -> AskRoomQuestion
+Generate Texture    -> CreateTextureJob
+Rotate Left         -> RotateSelectedLeft
+Rotate Right        -> RotateSelectedRight
+Scale Up            -> ScaleSelectedUp
+Scale Down          -> ScaleSelectedDown
+Remove              -> RemoveSelected
+```
+
+Optional UI fields:
+
+```txt
+Question Input      -> questionInput
+Texture Prompt      -> texturePromptInput
+Status Text         -> statusText
 ```
 
 For mobile backend testing, set the API base URL in `RevealARApiClient` to:

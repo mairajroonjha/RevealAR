@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RevealAR.Models;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
@@ -12,7 +13,8 @@ namespace RevealAR.AR
         [SerializeField] private Camera arCamera;
         [SerializeField] private GameObject selectedFurniturePrefab;
 
-        private static readonly List<ARRaycastHit> Hits = new();
+        private static readonly List<ARRaycastHit> Hits = new List<ARRaycastHit>();
+        private readonly List<GameObject> placedObjects = new List<GameObject>();
         private GameObject selectedObject;
 
         private void Update()
@@ -40,6 +42,31 @@ namespace RevealAR.AR
             selectedObject = null;
         }
 
+        public List<FurnitureItem> GetFurnitureLayout()
+        {
+            var items = new List<FurnitureItem>();
+
+            foreach (var placedObject in placedObjects)
+            {
+                if (placedObject == null)
+                {
+                    continue;
+                }
+
+                items.Add(new FurnitureItem
+                {
+                    assetId = placedObject.name.Replace("(Clone)", string.Empty).Trim(),
+                    positionX = placedObject.transform.position.x,
+                    positionY = placedObject.transform.position.y,
+                    positionZ = placedObject.transform.position.z,
+                    rotationY = placedObject.transform.eulerAngles.y,
+                    scale = placedObject.transform.localScale.x
+                });
+            }
+
+            return items;
+        }
+
         public void RotateSelected(float degrees)
         {
             if (selectedObject != null)
@@ -60,6 +87,7 @@ namespace RevealAR.AR
         {
             if (selectedObject != null)
             {
+                placedObjects.Remove(selectedObject);
                 Destroy(selectedObject);
                 selectedObject = null;
             }
@@ -76,6 +104,8 @@ namespace RevealAR.AR
                 }
 
                 selectedObject = Instantiate(selectedFurniturePrefab, pose.position, pose.rotation);
+                selectedObject.SetActive(true);
+                placedObjects.Add(selectedObject);
                 return;
             }
 
